@@ -28,7 +28,7 @@ public class Deck {
 	// Initialize all the ranks
 	public String[] ranks = {"Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
 			"Nine", "Ten", "Jack", "Queen", "King", "Ace"};
-	private int deckSize = 0;
+	private int deckSize = 52;
 	
 	// Default Constructor
 	public Deck() {
@@ -36,10 +36,23 @@ public class Deck {
 			for (int j = 0; j < ranks.length; j++) {
 				Card myCard = new Card(suits[i], ranks[j]);
 				myDeck.add(myCard);
-				deckSize ++;
 			}
 		}
 	}
+	
+//	public Deck shuffle() {
+//		Deck myDeck = new Deck();
+//		Random randomCard = new Random();
+//		Card theCard = new Card();
+//		Card theNextCard = new Card();
+//		for (int i = 51; i > 0; i-- ) {
+//			int cardToSwap = randomCard.nextInt(deckSize - 1);
+//			theCard = myDeck.get(cardToSwap);
+//			myDeck. = myDeck.get(i);
+//			
+//			
+//		}
+//	}
 	
 	// Methods
 	public String toString() {
@@ -50,10 +63,6 @@ public class Deck {
 			returnString += deckCard.toString() + "\n";
 		}
 		return returnString;
-	}
-	
-	public int getSize() {
-		return deckSize;
 	}
 	
 	public Card get(int index) {
@@ -114,6 +123,24 @@ public class Deck {
 		deckSize -= 1;
 		return tableCards;
 	}
+	
+	public int getDeckSize() {
+		return deckSize;
+	}
+	
+//	public String showTheTable() {
+//		Deck theTable = new Deck();
+//		ArrayList<Card> useableTable = new ArrayList<Card>();
+//		for (int i = 0; i < 3; i++) {
+//			useableTable.add(theTable.get(i));
+//		}
+//		
+//		String returnString = "";
+//		for (int i = 0; i < 3; i++) {
+//			returnString += useableTable.get(i) + " ";
+//		}
+//		return returnString;
+//	}
 	
 	
 }

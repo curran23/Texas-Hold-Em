@@ -30,7 +30,7 @@ public class HandEvaluator {
 			// Take that value and compare to all other values on the table
 			for (int k = j+1; k < aTable.size(); k++) {
 				if (aTable.get(j).rank == aTable.get(k).rank) {
-					returnString += "Table Pair" + "\n";
+					returnString = "Table Pair" + "\n";
 					}
 			}
 		}
@@ -45,7 +45,7 @@ public class HandEvaluator {
 			}
 		}
 		
-		return returnString;
+		return returnString + "\n";
 	}
 	
 	public String isThreeOfAKind(ArrayList<Card> aHand, ArrayList<Card> aTable) {
@@ -64,7 +64,36 @@ public class HandEvaluator {
 		if (aHand.get(0).rank == aHand.get(1).rank) {
 			for (int i = 0; i < aTable.size(); i++) {
 				if (aTable.get(i).rank == aHand.get(0).rank) {
-					returnString = "Three of a Kind";
+					returnString = "Three of a Kind, pocket pair";
+				}
+				else {
+					// Check for a pair on the board
+					for (int j = 0; j < aTable.size() - 1; j++) {
+						// Loop again right away to compare the first card with all the cards on the table
+						// This will find all pairs, regardless of the cards' location on the table
+						for (int k = j+1; k < aTable.size(); k++) {
+							if (aTable.get(j).rank == aTable.get(k).rank) {
+								// If a pair exists, check to see if either player cards
+								// create three of a kind
+								if (cardRanks[0] == aTable.get(j).rank) {
+									returnString = "Three of a Kind, table pair";
+								}
+								else if (cardRanks[1] == aTable.get(j).rank) {
+									returnString = "Three of a Kind, table pair";
+								}
+								// If neither of the player's cards match the existing pair, there could
+								// be a Three of a Kind on the table by itself. Check the remaining cards
+								// for a 3rd matching card if we find a pair earlier in the table
+								else {
+									for (int l = k + 1; l < aTable.size(); l ++) {
+										if (aTable.get(j).rank == aTable.get(l).rank) {
+											returnString = "Three of a Kind, all on the table";
+										}
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -73,22 +102,32 @@ public class HandEvaluator {
 		else {	
 			// Check for a pair on the board
 			for (int j = 0; j < aTable.size() - 1; j++) {
+				// Loop again right away to compare the first card with all the cards on the table
+				// This will find all pairs, regardless of the cards' location on the table
 				for (int k = j+1; k < aTable.size(); k++) {
 					if (aTable.get(j).rank == aTable.get(k).rank) {
 						// If a pair exists, check to see if either player cards
 						// create three of a kind
 						if (cardRanks[0] == aTable.get(j).rank) {
-							returnString = "Three of a Kind";
+							returnString = "Three of a Kind, table pair";
 						}
 						else if (cardRanks[1] == aTable.get(j).rank) {
-							returnString = "Three of a Kind";
+							returnString = "Three of a Kind, table pair";
+						}
+						// If neither of the player's cards match the existing pair, there could
+						// be a Three of a Kind on the table by itself. Check the remaining cards
+						// for a 3rd matching card if we find a pair earlier in the table
+						else {
+							for (int l = k + 1; l < aTable.size(); l ++) {
+								if (aTable.get(j).rank == aTable.get(l).rank) {
+									returnString = "Three of a Kind, all on the table";
+								}
+							}
 						}
 					}
 				}
 			}
-		
-	
 		}
-		return returnString;
+		return returnString + "\n";
 	}
 }
