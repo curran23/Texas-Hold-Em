@@ -130,4 +130,72 @@ public class HandEvaluator {
 		}
 		return returnString + "\n";
 	}
+	
+	public String isFourOfAKind(ArrayList<Card> aHand, ArrayList<Card> aTable) {
+		String returnString = "";
+		
+		String[] cardRanks = new String[2];
+		String[] tableRanks = new String[5];
+		
+		
+		for (int i=0; i < 2; i ++) {
+			cardRanks[i] = aHand.get(i).getRank();
+		}
+		
+		for (int i=0; i < 5; i++) {
+			tableRanks[i] = aTable.get(i).getRank();
+		}
+		
+		// If you have a pocket pair
+		if (cardRanks[0] == cardRanks[1]) {
+			// Loop through the cards on the table to find any table pairs
+			for (int i = 0; i < aTable.size() - 1; i++) {
+				for (int j = i + 1; j < aTable.size(); j++) {
+					// Confirm a pair on the table
+					if (tableRanks[i] == tableRanks[j]) {
+						// Make sure table pair matches the players pair
+						if (tableRanks[j] == cardRanks[0]) {
+							returnString = "Four of a kind, pocket pair";
+						}
+					}
+				}
+			}
+		}
+		
+		// No pocket pair, either have three on the board and match one player card or
+		// four of a kind on the board is possible
+		else {
+			// Use a triple for loop to evaluate all possible combinations of three cards 
+			// on the table
+			for (int i = 0; i < aTable.size(); i++) {
+				for (int j = i + 1; j < aTable.size(); j++) {
+					for (int k = j + 1; k < aTable.size(); k++) {
+						// If there is a pair
+						if (tableRanks[j] == tableRanks[i]) {
+							// If you have three of a kind
+							if (tableRanks[k] == tableRanks[j]) {
+								if (tableRanks[k] == cardRanks[0] || tableRanks[k] == cardRanks[1]) {
+									returnString = "Four of a kind, three on the board";
+								}
+								
+								// If the cards on the board don't match either of the players cards
+								else {
+									// Loop to see if there is four of a kind on the board
+									for (int l = k + 1; l < aTable.size(); l++) {
+										if (tableRanks[l] == tableRanks[k]) {
+											returnString = "Four of a kind, all on the board";
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+		}
+		
+		return returnString;
+		
+	}
 }
