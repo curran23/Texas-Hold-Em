@@ -256,4 +256,97 @@ public class HandEvaluator {
 		}
 		return returnString;
 	}
+	
+	/**public String isFullHouse(ArrayList<Card> aHand, ArrayList<Card> aTable) {
+		
+		String returnString = "";
+		// Variable will be set to true if a pair is on the board
+		// Variable will be set to true if three of a kind is on the board
+		boolean pocketPairAndBoardThreeOfAKind = false;
+		String[] cardRanks = new String[2];
+		String[] tableRanks = new String[5];
+		
+		for (int i=0; i < 2; i ++) {
+			cardRanks[i] = aHand.get(i).getRank();
+		}
+		
+		for (int i=0; i < 5; i++) {
+			tableRanks[i] = aTable.get(i).getRank();
+		}
+		
+		// Check for a pocket pair
+		if (cardRanks[0] == cardRanks[1]) {
+			// If there is a pocket pair, I need to find three of a kind on the board
+			// or a card to make three of a kind with the players pocket pair and a separate pair on the board
+			for (int a = 0; a < aTable.size(); a++) {
+				// If the pocket pair has a matching card on the table
+				if (tableRanks[a] == cardRanks[0]) {
+					pocketPairAndBoardThreeOfAKind = true;
+				}
+				
+				for (int b = 0; b < aTable.size() - 1; b++) {
+					for (int c = 0; c < aTable.size(); c++) {
+						// If there is a pair on the board that is not the same as rank as the 
+						// three of a kind
+						if (tableRanks[b] == tableRanks[c] && tableRanks[b] != cardRanks[0]) {
+							if (pocketPairAndBoardThreeOfAKind) {
+								returnString = "Full house, three of a kind with pocket pair helping";
+							}
+						}
+					}
+				}
+			}
+			
+			for (int i = 0; i < aTable.size() - 2; i++) {
+				for (int j = i + 1; j < aTable.size() - 1; j++) {
+					for (int k = j + 1; k < aTable.size(); k++) {
+						if (tableRanks[i] == tableRanks[j]) {
+							// If there is a three of a kind on the board
+							if (tableRanks[j] == tableRanks[k]) {
+								returnString = "Full house, pocket pair";
+							}
+						}
+					}
+				}
+			}
+		}
+		// No pocket pair means I need a three of a kind on the board and a table card to match one of the pocket cards
+		// Also have to consider the situation where the entire full house is on the board and situation where both players cards
+		// are used, one for a pair and one for three of a kind
+		else {
+			// Loop through one time to see if any of the table cards match a pocket card
+			for (int i = 0; i < aTable.size(); i++) {
+				// Using the ^ operator which is the XOR operator because I do not want the
+				// scenario where both of the players cards have matching cards on the table
+				if (cardRanks[0] == tableRanks[i] ^ cardRanks[1] == tableRanks[i]) {
+					// There is a pair between the table and the player's cards
+					for (int l = 0; l < aTable.size() - 2; l++) {
+						for (int j = l + 1; j < aTable.size() - 1; j++) {
+							for (int k = j + 1; k < aTable.size(); k++) {
+								if (tableRanks[l] == tableRanks[j]) {
+									// If there is a three of a kind on the board
+									if (tableRanks[j] == tableRanks[k]) {
+										returnString = "Full house, three of a kind on the board";
+									}
+								}
+							}
+						}
+					}
+				}
+				// Check to see if both player cards will be used to make the full house
+				else if (cardRanks[0] == tableRanks[i]) {
+					for (int d = 0; d < aTable.size(); d++) {
+						// If the player's second card matches a table card and that table card doesn't match the players first card
+						if (cardRanks[1] == tableRanks[d] && tableRanks[d] != cardRanks[0]) {
+							for (int e = d + 1; e < aTable.size(); e++) {
+								
+							}
+						}
+					}
+				}
+			}
+		} 
+		return returnString;
+		
+	} **/
 }

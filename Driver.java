@@ -49,12 +49,12 @@ public class Driver {
 //		System.out.println(playerHand5.toString());
 //		System.out.println(playerHand6.toString());
 		Card firstCard = new Card("Hearts", "Jack");
-		Card secondCard = new Card("Diamonds", "Ace");
-		Card thirdCard = new Card("Spades", "Two");
-		Card fourthCard = new Card("Diamonds", "Two");
-		Card fifthCard = new Card("Clubs", "Six");
-		Card playerCard1 = new Card("Diamonds", "Ace");
-		Card playerCard2 = new Card("Diamonds", "Seven");
+		Card secondCard = new Card("Diamonds", "Five");
+		Card thirdCard = new Card("Spades", "Ace");
+		Card fourthCard = new Card("Diamonds", "Five");
+		Card fifthCard = new Card("Clubs", "Five");
+		Card playerCard1 = new Card("Diamonds", "Four");
+		Card playerCard2 = new Card("Diamonds", "Ace");
 		playerHand1 = new ArrayList<Card>();
 		playerHand1.add(playerCard1);
 		playerHand1.add(playerCard2);
