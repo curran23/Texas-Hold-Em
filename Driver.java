@@ -48,13 +48,13 @@ public class Driver {
 //		System.out.println(playerHand4.toString());
 //		System.out.println(playerHand5.toString());
 //		System.out.println(playerHand6.toString());
-		Card firstCard = new Card("Hearts", "Two");
+		Card firstCard = new Card("Hearts", "Jack");
 		Card secondCard = new Card("Diamonds", "Ace");
-		Card thirdCard = new Card("Spades", "Ace");
-		Card fourthCard = new Card("Diamonds", "Three");
-		Card fifthCard = new Card("Clubs", "Jack");
+		Card thirdCard = new Card("Spades", "Two");
+		Card fourthCard = new Card("Diamonds", "Two");
+		Card fifthCard = new Card("Clubs", "Six");
 		Card playerCard1 = new Card("Diamonds", "Ace");
-		Card playerCard2 = new Card("Diamonds", "Ace");
+		Card playerCard2 = new Card("Diamonds", "Seven");
 		playerHand1 = new ArrayList<Card>();
 		playerHand1.add(playerCard1);
 		playerHand1.add(playerCard2);
@@ -67,7 +67,7 @@ public class Driver {
 		table.add(fifthCard);
 		System.out.println(table.toString());
 		System.out.println(playerHand1.toString());
-		System.out.println(myEvaluator.isFourOfAKind(playerHand1, table));
+		System.out.println(myEvaluator.isTwoPair(playerHand1, table));
 		
 		
 	}

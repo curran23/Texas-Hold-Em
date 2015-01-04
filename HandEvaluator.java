@@ -198,4 +198,62 @@ public class HandEvaluator {
 		return returnString;
 		
 	}
+	
+	public String isTwoPair(ArrayList<Card> aHand, ArrayList<Card> aTable) {
+		
+		String returnString = "";
+		// Variable will be set to true if a pair is on the board
+		boolean boardPair = false;
+		String[] cardRanks = new String[2];
+		String[] tableRanks = new String[5];
+		
+		
+		for (int i=0; i < 2; i ++) {
+			cardRanks[i] = aHand.get(i).getRank();
+		}
+		
+		for (int i=0; i < 5; i++) {
+			tableRanks[i] = aTable.get(i).getRank();
+		}
+		
+		// Check for a pocket pair
+		if (cardRanks[0] == cardRanks[1]) {
+			// Check table for a pair that is not the same as the pocket pair, i.e. not four of a kind
+			for (int i = 0; i < aTable.size() -1; i++) {
+				for (int j = i + 1; j < aTable.size(); j++) {
+					if (tableRanks[i] == tableRanks[j]) {
+						if (tableRanks[i] != cardRanks[0]) {
+							returnString = "Two pair, pocket pair";
+						}
+					}
+				}
+			}
+		}
+		
+		// Not a pocket pair
+		else {
+			// First find a pair on the table, because there is no point in passing through the table
+			// looking for a pair to match one of the players cards if there isn't a pair on the board
+			for (int i = 0; i < aTable.size() -1; i++) {
+				for (int j = i + 1; j < aTable.size(); j++) {
+					if (tableRanks[i] == tableRanks[j]) {
+						// Boolean used to reduce run time by not having a triple for loop
+						boardPair = true;
+					}
+				}
+			}
+			
+			// Loop through the table one time looking for a single pair between the table and player's hand
+			for (int i = 0; i < aTable.size(); i++) {
+				if (tableRanks[i] == cardRanks[0] || tableRanks[i] == cardRanks[1]) {
+					// If you find a pair, check to see if there is a pair on the board
+					if (boardPair) {
+						returnString = "Two Pair, pair on the board";
+					}
+				}
+			}
+			
+		}
+		return returnString;
+	}
 }
