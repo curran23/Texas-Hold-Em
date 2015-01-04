@@ -59,6 +59,7 @@ public class Driver {
 		playerHand1.add(playerCard1);
 		playerHand1.add(playerCard2);
 
+		// Testing below
 		table.add(firstCard);
 		table.add(secondCard);
 		table.add(thirdCard);
