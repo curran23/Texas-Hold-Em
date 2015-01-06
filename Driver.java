@@ -48,13 +48,13 @@ public class Driver {
 //		System.out.println(playerHand4.toString());
 //		System.out.println(playerHand5.toString());
 //		System.out.println(playerHand6.toString());
-		Card firstCard = new Card("Hearts", "Jack");
+		Card firstCard = new Card("Spades", "Jack");
 		Card secondCard = new Card("Diamonds", "Five");
 		Card thirdCard = new Card("Spades", "Ace");
 		Card fourthCard = new Card("Diamonds", "Five");
-		Card fifthCard = new Card("Clubs", "Five");
-		Card playerCard1 = new Card("Diamonds", "Four");
-		Card playerCard2 = new Card("Diamonds", "Ace");
+		Card fifthCard = new Card("Spades", "Five");
+		Card playerCard1 = new Card("Spades", "Four");
+		Card playerCard2 = new Card("Spades", "Ace");
 		playerHand1 = new ArrayList<Card>();
 		playerHand1.add(playerCard1);
 		playerHand1.add(playerCard2);
@@ -67,7 +67,7 @@ public class Driver {
 		table.add(fifthCard);
 		System.out.println(table.toString());
 		System.out.println(playerHand1.toString());
-		System.out.println(myEvaluator.isTwoPair(playerHand1, table));
+		System.out.println(myEvaluator.isFlush(playerHand1, table));
 		
 		
 	}

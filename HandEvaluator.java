@@ -59,6 +59,10 @@ public class HandEvaluator {
 			cardRanks[i] = aHand.get(i).getRank();
 		}
 		
+		for (int i=0; i < 5; i ++) {
+			tableRanks[i] = aTable.get(i).getRank();
+		}
+		
 		// If you have a pocket pair, make one pass through the table to see 
 		// if any other cards will give you three of a kind
 		if (aHand.get(0).rank == aHand.get(1).rank) {
@@ -349,4 +353,78 @@ public class HandEvaluator {
 		return returnString;
 		
 	} **/
+	
+	public String isFlush(ArrayList<Card> aHand, ArrayList<Card> aTable) {
+		
+		/**
+		 * In order to have a flush, you must have five cards of the same suit. At this moment, all flushes will be treated
+		 * equal so there will be no functionality for determining which suit is the highest.
+		 */
+		
+		String returnString = "";
+		
+		// Variables used to count number of cards in each suit
+		int heartsCount = 0;
+		int diamondsCount = 0;
+		int clubsCount = 0;
+		int spadesCount = 0;
+		
+		for (int i=0; i < 2; i ++) {
+			
+			if (aHand.get(i).getSuit() == "Hearts") {
+				heartsCount += 1;
+			}
+			
+			if (aHand.get(i).getSuit() == "Diamonds") {
+				diamondsCount += 1;
+			}
+			
+			if (aHand.get(i).getSuit() == "Clubs") {
+				clubsCount += 1;
+			}
+			
+			if (aHand.get(i).getSuit() == "Spades") {
+				spadesCount += 1;
+			}
+		}
+		
+		for (int i=0; i < 5; i++) {
+			
+			if (aTable.get(i).getSuit() == "Hearts") {
+				heartsCount += 1;
+			}
+			
+			if (aTable.get(i).getSuit() == "Diamonds") {
+				diamondsCount += 1;
+			}
+			
+			if (aTable.get(i).getSuit() == "Clubs") {
+				clubsCount += 1;
+			}
+			
+			if (aTable.get(i).getSuit() == "Spades") {
+				spadesCount += 1;
+			}
+		}
+		
+		// Determine which suit gives us a flush, if any
+		
+		if (heartsCount >= 5) {
+			returnString = "Flush of Hearts";
+		}
+		
+		if (diamondsCount >= 5) {
+			returnString = "Flush of Diamonds";
+		}
+		
+		if (clubsCount >= 5) {
+			returnString = "Flush of Clubs";
+		}
+		
+		if (spadesCount >= 5) {
+			returnString = "Flush of Spades";
+		}
+		
+		return returnString;
+	}
 }
