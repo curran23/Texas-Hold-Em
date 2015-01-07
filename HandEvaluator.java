@@ -427,4 +427,51 @@ public class HandEvaluator {
 		
 		return returnString;
 	}
+	
+	/**public String isStraight(ArrayList<Card> aHand, ArrayList<Card> aTable) {
+	
+		
+		 * A straight consists of five cards in numerical order. To check the table and hand for a straight, I will consider three
+		 * possibilities. 1) Both of the players card help in making the straight. 2) One of the players cards helps make the straight.
+		 * 3) There is a straight on the board. To check for a straight, I will make one large array with all the cards on the table
+		 * and in the players hand and check for a straight in that array.
+		 
+
+		String returnString = "";
+		String[] ranks = new String[7];
+		// Variable will be used to count the number of cards in the straight
+		int straightCounter = 0;
+		ArrayList<Integer> values = new ArrayList<Integer>();
+
+		for (int i=0; i < 2; i ++) {
+			ranks[i] = aHand.get(i).getRank();
+		}
+
+		for (int i=2; i < 7; i++) {
+			ranks[i] = aTable.get(i).getRank();
+		}
+
+		for (int i = 0; i < 7; i++) {
+			values.add(Integer.parseInt(ranks[1]));
+		}
+
+		Collections.sort(values);
+
+		for (int i = 0; i < values.size(); i++) {
+			if (values.get(i) == (values.get(i + 1))) {
+				straightCounter += 1;
+			}
+		}
+
+		if (straightCounter >= 5) {
+			returnString = "Straight";
+		}
+		
+		return returnString;
+	
+	}	
+	* Need a way to treat the face cards. Need to assign them values
+	*/
+		
+		
 }
